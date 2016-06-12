@@ -56,7 +56,7 @@ public class HourWeatherAdapter extends BaseAdapter {
 
         holder.iconImageView.setImageResource(hour.getIconId());
         holder.itemTemp.setText(hour.getTemperatureCelcius() + "");
-        holder.timeLabel.setText(hour.getHour());
+        holder.timeLabel.setText(hour.getTime()+"");
 
         return convertView;
     }

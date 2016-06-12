@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchNews(View view) {
-
+        Intent intent = new Intent(this, HackerNewsActivity.class);
+        startActivity(intent);
     }
 
     private void requestPermissions() {

@@ -20,31 +20,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 
-public class WeatherActivity extends AppCompatActivity {
-    private static final String TAG = WeatherActivity.class.getSimpleName();
+public class HackerNewsActivity extends AppCompatActivity {
+
+    private static final String TAG = HackerNewsActivity.class.getSimpleName();
 
     private Boolean recieverIsRegistered = false;
 
-    @BindView(android.R.id.list)
+    @BindView(R.id.listHN)
     ListView mListView;
 
-    @BindView(android.R.id.empty)
+    @BindView(R.id.emptyHN)
     TextView mEmptyTextView;
-
-    @BindView(R.id.currentTemp)
-    TextView mCurrentTemp;
-
-    @BindView(R.id.tempDate)
-    TextView mCurrentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
+        setContentView(R.layout.activity_hacker_news);
         IntentFilter filer = new IntentFilter();
         filer.addAction("android.provider.Telephony.SMS_RECEIVED");
         filer.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
@@ -58,7 +52,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     public void preformRequest() {
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("6474928225", null, "WEATHER:APP: hourly", null, null);
+        smsManager.sendTextMessage("6474928225", null, "HACKNEWS:APP: headlines", null, null);
     }
 
     @Override
@@ -79,25 +73,12 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     private void parseResponseMessage(String message) throws JSONException {
+        String[] titles;
         JSONArray data_messages = new JSONArray(message);
-        WeatherHour[] hours = new WeatherHour[24];
-        for(int i = 0; i < data_messages.length(); i++) {
-            JSONObject jsonHour = data_messages.getJSONObject(i);
-            String summary = jsonHour.getString("summary");
-            Log.d(TAG, summary);
-            WeatherHour hour = new WeatherHour();
-            for(int j = 0; j < 24; j++) {
-                hour.setTime(j);
-                String temperature = jsonHour.getString(j+1+"Hr");
-                double temp_num = Double.parseDouble(temperature);
-                hour.setTemperature(temp_num);
 
-                hours[j] = hour;
-            }
-        }
-        HourWeatherAdapter adapter = new HourWeatherAdapter(this, hours);
-        mListView.setAdapter(adapter);
-        mListView.setEmptyView(mEmptyTextView);
+        //HourWeatherAdapter adapter = new HourWeatherAdapter(this, titles);
+        //mListView.setAdapter(adapter);
+        //mListView.setEmptyView(mEmptyTextView);
     }
 
     private BroadcastReceiver messageReciever = new BroadcastReceiver() {
@@ -114,7 +95,7 @@ public class WeatherActivity extends AppCompatActivity {
                     for (int i = 0; i < pdusObj.length; i++) {
                         SmsMessage[] msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent);
                         fullMessage.add(msgs[i].getDisplayMessageBody());
-                        }
+                    }
                     String messageBody = "";
                     for (String message : fullMessage) {
                         messageBody += message;

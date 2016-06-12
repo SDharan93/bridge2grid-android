@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by shane on 12/06/16.
  */
 public class WeatherHour {
-    private long mTime;
+    private int mTime;
     private String mSummary;
     private double mTemperature;
     private double mTemperatureCelcius;
@@ -19,12 +19,6 @@ public class WeatherHour {
         return mIconId;
     }
 
-    public String getHour() {
-        SimpleDateFormat formatter = new SimpleDateFormat("h a");
-        Date date = new Date(mTime * 1000);
-        return formatter.format(date);
-    }
-
     public void setIconId(int iconId) {
         mIconId = iconId;
     }
@@ -33,7 +27,7 @@ public class WeatherHour {
         return mTime;
     }
 
-    public void setTime(long time) {
+    public void setTime(int time) {
         mTime = time;
     }
 
