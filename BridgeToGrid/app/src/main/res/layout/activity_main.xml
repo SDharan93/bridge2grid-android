@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom">
 
-            <Button
+            <ImageButton
                 android:id="@+id/wikipediaButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -43,9 +43,11 @@
                 android:textColor="#06a9ea"
                 android:background="#ffffff"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"/>
+                android:paddingRight="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/wikifw"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/financeButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -54,9 +56,11 @@
                 android:background="#ffffff"
                 android:textColor="#06a9ea"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"/>
+                android:paddingRight="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/stocksfw"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/weatherButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -65,9 +69,11 @@
                 android:background="#ffffff"
                 android:textColor="#06a9ea"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"/>
+                android:paddingRight="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/weatheralternatefw"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/newsButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -76,7 +82,9 @@
                 android:background="#ffffff"
                 android:textColor="#06a9ea"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/technewsfw"/>
         </LinearLayout>
 
     </HorizontalScrollView>
