@@ -15,40 +15,37 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button search, wikipedia, sports, recipies, stocks, news;
-    private EditText searchBar;
-    private ChosenCategory chosenCategory = new ChosenCategory();
+    private Button wikipedia, finance, weather, news;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search = (Button) findViewById(R.id.searchButton);
-
-        searchBar = (EditText) findViewById(R.id.searchBar);
-
         wikipedia = (Button) findViewById(R.id.wikipediaButton);
-        sports = (Button) findViewById(R.id.sportsButton);
-        recipies = (Button) findViewById(R.id.recipiesButton);
-        stocks = (Button) findViewById(R.id.stocksButton);
+        finance = (Button) findViewById(R.id.financeButton);
+        weather = (Button) findViewById(R.id.weatherButton);
         news = (Button) findViewById(R.id.newsButton);
-
-        Category wikipediaCat = new Category(wikipedia, true);
-        Category sportsCat = new Category(sports);
-        Category recipiesCat = new Category(recipies);
-        Category stocksCat = new Category(stocks);
-        Category newsCat = new Category(news);
-
-        chosenCategory.addCategory(wikipediaCat);
-        chosenCategory.addCategory(sportsCat);
-        chosenCategory.addCategory(recipiesCat);
-        chosenCategory.addCategory(stocksCat);
-        chosenCategory.addCategory(newsCat);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             requestPermissions();
         }
+    }
+
+    public void searchWikipedia(View view) {
+
+    }
+
+    public void searchFinance(View view) {
+
+    }
+
+    public void searchWeather(View view) {
+
+    }
+
+    public void searchNews(View view) {
+
     }
 
     private void requestPermissions() {
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             int hasSmsSendPermission = checkSelfPermission(Manifest.permission.SEND_SMS);
             List<String> permissions = new ArrayList<>();
 
-            // check if the permissions are already granted
             if( hasReceieveSmsPermission != PackageManager.PERMISSION_GRANTED ) {
                 permissions.add( Manifest.permission.RECEIVE_SMS );
             }
@@ -95,31 +91,5 @@ public class MainActivity extends AppCompatActivity {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
-    }
-
-    public void changeCategory(View view) {
-        chosenCategory.switchCategory(view);
-    }
-
-    public void performSearch(View view) {
-        String searchTerm = searchBar.getText().toString();
-        View chosenView = chosenCategory.returnChosenCategory().getView();
-
-        if (chosenView == wikipedia) {
-
-        } else if (chosenView == sports) {
-
-        } else if (chosenView == recipies) {
-
-        } else if (chosenView == news) {
-
-        } else if (chosenView == stocks) {
-
-        } else {
-            Log.d("Main Class", "Should not be getting here...");
-        }
-
-        Intent intent = new Intent(this, DisplaySearch.class);
-        startActivity(intent);
     }
 }

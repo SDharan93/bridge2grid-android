@@ -13,72 +13,52 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="50dp"
         android:text="Bridge To Grid" />
 
-    <EditText
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:textSize="20dp"
-        android:text="Enter search term"
-        android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/searchBar"
-        android:text="Search"
-        android:onClick="performSearch"/>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/searchButton">
+        android:layout_below="@+id/title">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
 
             <Button
                 android:id="@+id/wikipediaButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Wikipedia"
-                android:onClick="changeCategory"/>
+                android:onClick="searchWikipedia"/>
 
             <Button
-                android:id="@+id/sportsButton"
+                android:id="@+id/financeButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sports"
-                android:onClick="changeCategory"/>
+                android:layout_height="match_parent"
+                android:text="Finance"
+                android:onClick="searchFinance"/>
 
             <Button
-                android:id="@+id/recipiesButton"
+                android:id="@+id/weatherButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Recipies"
-                android:onClick="changeCategory"/>
-
-            <Button
-                android:id="@+id/stocksButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Stocks"
-                android:onClick="changeCategory"/>
+                android:layout_height="match_parent"
+                android:text="Weather"
+                android:onClick="searchWeather"/>
 
             <Button
                 android:id="@+id/newsButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="News"
-                android:onClick="changeCategory"/>
+                android:onClick="searchNews"/>
         </LinearLayout>
 
     </HorizontalScrollView>
