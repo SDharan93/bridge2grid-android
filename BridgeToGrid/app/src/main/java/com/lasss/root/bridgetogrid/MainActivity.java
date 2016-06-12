@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchWeather(View view) {
-
+        Intent intent = new Intent(this, WeatherActivity.class);
+        startActivity(intent);
     }
 
     public void searchNews(View view) {
