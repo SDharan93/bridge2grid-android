@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.lasss.root.bridgetogrid.MainActivity">
+    tools:context="com.lasss.root.bridgetogrid.MainActivity"
+                android:background="#06a9ea">
 
     <TextView
         android:id="@+id/title"
@@ -17,7 +18,8 @@
         android:paddingBottom="25dp"
         android:textAlignment="center"
         android:textSize="50dp"
-        android:text="Bridge To Grid" />
+        android:text="Bridge To Grid"
+        android:textColor="#ffffff"/>
 
 
 
@@ -37,28 +39,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Wikipedia"
-                android:onClick="searchWikipedia"/>
+                android:onClick="searchWikipedia"
+                android:textColor="#06a9ea"
+                android:background="#ffffff"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
             <Button
                 android:id="@+id/financeButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Finance"
-                android:onClick="searchFinance"/>
+                android:onClick="searchFinance"
+                android:background="#ffffff"
+                android:textColor="#06a9ea"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
             <Button
                 android:id="@+id/weatherButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Weather"
-                android:onClick="searchWeather"/>
+                android:onClick="searchWeather"
+                android:background="#ffffff"
+                android:textColor="#06a9ea"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
             <Button
                 android:id="@+id/newsButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="News"
-                android:onClick="searchNews"/>
+                android:onClick="searchNews"
+                android:background="#ffffff"
+                android:textColor="#06a9ea"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
         </LinearLayout>
 
     </HorizontalScrollView>

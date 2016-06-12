@@ -11,6 +11,8 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,23 +24,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HackerNewsActivity extends AppCompatActivity {
 
     private static final String TAG = HackerNewsActivity.class.getSimpleName();
 
     private Boolean recieverIsRegistered = false;
+    private List<String> mTitles = new ArrayList<>();
+    private ArrayAdapter adapter;
 
     @BindView(R.id.listHN)
     ListView mListView;
-
-    @BindView(R.id.emptyHN)
-    TextView mEmptyTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hacker_news);
+        ButterKnife.bind(this);
         IntentFilter filer = new IntentFilter();
         filer.addAction("android.provider.Telephony.SMS_RECEIVED");
         filer.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
@@ -47,12 +50,14 @@ public class HackerNewsActivity extends AppCompatActivity {
             registerReceiver(messageReciever, filer);
         }
 
+        //adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mTitles);
+        //mListView.setAdapter(adapter);
         preformRequest();
     }
 
     public void preformRequest() {
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("6474928225", null, "HACKNEWS:APP: headlines", null, null);
+        smsManager.sendTextMessage("6474964388", null, "HACKNEWS:APP: headlines", null, null);
     }
 
     @Override
@@ -73,12 +78,20 @@ public class HackerNewsActivity extends AppCompatActivity {
     }
 
     private void parseResponseMessage(String message) throws JSONException {
-        String[] titles;
-        JSONArray data_messages = new JSONArray(message);
-
-        //HourWeatherAdapter adapter = new HourWeatherAdapter(this, titles);
-        //mListView.setAdapter(adapter);
-        //mListView.setEmptyView(mEmptyTextView);
+            JSONArray data_messages = new JSONArray(message);
+            Log.d(TAG, "Got Json Array!");
+            for(int j = 0; j < data_messages.length(); j++) {
+                JSONObject titleObj = data_messages.getJSONObject(j);
+                if(titleObj.has("title")) {
+                    mTitles.add(titleObj.getString("title"));
+                }
+            }
+            Log.d(TAG, "Made it out of loop");
+            HackerNewsAdapter adapter = new HackerNewsAdapter(this, mTitles);
+            //adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mTitles);
+            mListView.setAdapter(adapter);
+            //mListView.setEmptyView(mEmptyTextView);
+            ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
     }
 
     private BroadcastReceiver messageReciever = new BroadcastReceiver() {
@@ -106,7 +119,7 @@ public class HackerNewsActivity extends AppCompatActivity {
                     parseResponseMessage(shortMessage);
                 }
             } catch (Exception e) {
-                Log.e(TAG, "Exception smsRecieve");
+                Log.e(TAG, "Exception smsRecieve " + e);
             }
         }
     };

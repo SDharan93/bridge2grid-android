@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = WeatherActivity.class.getSimpleName();
@@ -45,6 +46,7 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+        ButterKnife.bind(this);
         IntentFilter filer = new IntentFilter();
         filer.addAction("android.provider.Telephony.SMS_RECEIVED");
         filer.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
@@ -58,7 +60,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     public void preformRequest() {
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("6474928225", null, "WEATHER:APP: hourly", null, null);
+        smsManager.sendTextMessage("6474964388", null, "WEATHER:APP: hourly", null, null);
     }
 
     @Override
